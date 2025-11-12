@@ -54,7 +54,7 @@ function calculerLeReste(float $montantAchat, float $montantDonne): float {
     return round($montantDonne - $montantAchat, 2);
 }
 
-function calculeBillet($billet, $quantite, &$reste): int {
+function calculeBillet($billet, &$quantite, &$reste): int {
     $nb_billet = 0;
     $billet = (float)$billet;
     while ($reste >= $billet && $quantite > 0) {
@@ -68,7 +68,7 @@ function calculeBillet($billet, $quantite, &$reste): int {
     return $nb_billet;
 }
 
-function calculePiece($piece, $quantite, &$reste): int {
+function calculePiece($piece, &$quantite, &$reste): int {
     $nb_piece = 0;
     $piece = (float)$piece;
     while ($reste >= $piece && $quantite > 0) {
@@ -83,8 +83,10 @@ function calculePiece($piece, $quantite, &$reste): int {
 }
 
 function monnaieRendre(array $tresorerie, float $montantRendre): void {
+    
+    if ($montantRendre < 0.01) return;
+
     $reste = $montantRendre;
-    echo "Montant à rendre : $reste €\n";
 
     $montants = array_keys($tresorerie);
     $montants = array_map('floatval', $montants);
@@ -109,8 +111,8 @@ function monnaieRendre(array $tresorerie, float $montantRendre): void {
 }
 
 // === TEST ===
-$achat = 5.50;
-$donne = 7;
+$achat = 450;
+$donne = 1000;
 $reste = calculerLeReste($achat, $donne);
 
 monnaieRendre($tresorerie, $reste);
