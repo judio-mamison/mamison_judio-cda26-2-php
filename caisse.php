@@ -143,8 +143,8 @@ function encaissement(array $tresorerie, float $montantARendre, $base = "standar
 }
 
 // === TEST ===
-$achat = 45;
-$donne = 100;
-$reste = calculerLeReste($achat, $donne);
+// $achat = 45;
+// $donne = 100;
+// $reste = calculerLeReste($achat, $donne);
 
-encaissement($tresorerie, $reste, PREFERENCE);
+// encaissement($tresorerie, $reste, PREFERENCE);
